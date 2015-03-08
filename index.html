@@ -8,13 +8,29 @@
     <style>
 .stickToBottom {
   position:fixed;
+background:#fff;
   bottom:0;
   left:7.5%;
   width:85%;
+height:50px;
+}
+body {
+margin:100px 0;
+}
+header {
+position:fixed;
+background:#fff;
+height:75px;
+top:0;
+width:85%;
+left:7.5%;
 }
     </style>
   </head>
   <body>
+<header>
+<h3>Dormitory.me</h3>
+</header>
     <div class="container">
       <div class="row">
         <ul id="messages" class="col s12 collection"></ul>
@@ -46,6 +62,7 @@ socket.on('chat message', function(link){
   } else {
     $('#messages').append($('<li class="right-align collection-item">').html("<h4>"+link[0]+"</h4><img src='"+link[1]+"' />"));
   }
+$(document).scrollTop($(document).height());
 });
     </script>
   </body>

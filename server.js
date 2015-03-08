@@ -9,14 +9,12 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
   socket.on('chat message', function(msg){
-      console.log(msg);
     request.get("http://api.giphy.com/v1/gifs/search?q="+encodeURIComponent(msg[1])+"&api_key=dc6zaTOxFJmzC", function(err, res, data) {
       var parsedData = JSON.parse(data).data;
-      io.emit('chat message', [msg[0], parsedData[0].images.fixed_width.url]);
+      io.emit('chat message', [msg[0], parsedData[Math.floor(Math.random() * parsedData.length)].images.fixed_width.url]);
     });
   });
 });
 
-http.listen(5000, function(){
-  console.log('listening on *:3000');
+http.listen(80, function(){
 });
